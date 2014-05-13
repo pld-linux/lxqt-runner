@@ -17,6 +17,7 @@ BuildRequires:	QtXml-devel >= %{qtver}
 BuildRequires:	cmake >= 2.8.3
 BuildRequires:	liblxqt-devel >= 0.7.0
 BuildRequires:	libqtxdg-devel >= 0.5.3
+BuildRequires:	lxqt-globalkeys-devel >= 0.7.0
 BuildRequires:	menu-cache-devel >= 0.3.3
 BuildRequires:	xz-devel
 Requires:	lxqt-common
