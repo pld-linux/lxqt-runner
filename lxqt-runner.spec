@@ -1,44 +1,44 @@
 #
 # Conditional build:
 #
-%define		qtver		5.3.1
+%define		qtver		6.6.0
 
-Summary:	lxqt-runner
+Summary:	Application runner agent for LXQt desktop suite
+Summary(pl.UTF-8):	Agent uruchamiania aplikacji dla środowiska graficznego LXQt
 Name:		lxqt-runner
-Version:	0.11.0
+Version:	2.3.0
 Release:	1
 License:	GPLv2 and LGPL-2.1+
 Group:		X11/Applications
-Source0:	http://downloads.lxqt.org/lxqt/%{version}/%{name}-%{version}.tar.xz
-# Source0-md5:	1775481281003297bf290471a583f22a
+Source0:	https://github.com/lxqt/lxqt-runner/releases/download/%{version}/%{name}-%{version}.tar.xz
+# Source0-md5:	c0f5aca6d9eca740cf7b5c58337638bb
 URL:		http://www.lxqt.org/
-BuildRequires:	Qt5Script-devel >= %{qtver}
-BuildRequires:	Qt5Xml-devel >= %{qtver}
-BuildRequires:	cmake >= 2.8.3
-BuildRequires:	kf5-kwindowsystem-devel
-BuildRequires:	liblxqt-devel >= 0.11.0
-BuildRequires:	libqtxdg-devel >= 2.0.0
-BuildRequires:	lxqt-globalkeys-devel >= 0.11.0
-BuildRequires:	menu-cache-devel >= 0.5.0
+BuildRequires:	Qt6Widgets-devel >= %{qtver}
+BuildRequires:	Qt6Xml-devel >= %{qtver}
+BuildRequires:	cmake >= 3.18.0
+BuildRequires:	kf6-kwindowsystem-devel >= 6.0.0
+BuildRequires:	kp6-layer-shell-qt-devel >= 6.0.0
+BuildRequires:	liblxqt-devel >= 2.3.0
+BuildRequires:	lxqt-globalkeys-devel >= 2.3.0
 BuildRequires:	muparser-devel >= 2.2.5
+BuildRequires:	perl-base
+BuildRequires:	qt6-linguist >= %{qtver}
 BuildRequires:	xz-devel
-Requires:	lxqt-common
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
-lxqt-runner
+Application runner agent for LXQt desktop suite.
+
+%description -l pl.UTF-8
+Agent uruchamiania aplikacji dla środowiska graficznego LXQt.
 
 %prep
 %setup -q
 
 %build
-install -d build
-cd build
-%cmake \
-	-DPULL_TRANSLATIONS:BOOL=OFF \
-	../
+%cmake -B build
 
-%{__make}
+%{__make} -C build
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -46,12 +46,15 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} -C build install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-#%find_lang %{name} --with-qm
+%find_lang %{name} --with-qm
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%files
+%files -f %{name}.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/lxqt-runner
-#%dir %{_datadir}/lxqt/translations/lxqt-runner
+/etc/xdg/autostart/lxqt-runner.desktop
+%{_mandir}/man1/lxqt-runner.1*
+# required for the lang files
+%dir %{_datadir}/lxqt/translations/lxqt-runner
