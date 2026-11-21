@@ -6,20 +6,20 @@
 Summary:	Application runner agent for LXQt desktop suite
 Summary(pl.UTF-8):	Agent uruchamiania aplikacji dla środowiska graficznego LXQt
 Name:		lxqt-runner
-Version:	2.4.0
+Version:	2.5.0
 Release:	1
 License:	GPLv2 and LGPL-2.1+
 Group:		X11/Applications
 Source0:	https://github.com/lxqt/lxqt-runner/releases/download/%{version}/%{name}-%{version}.tar.xz
-# Source0-md5:	9ceae166db36448dfbc5825434c2dc08
+# Source0-md5:	a2036cf026f0ce48c6304054132f65df
 URL:		http://www.lxqt.org/
 BuildRequires:	Qt6Widgets-devel >= %{qtver}
 BuildRequires:	Qt6Xml-devel >= %{qtver}
 BuildRequires:	cmake >= 3.18.0
 BuildRequires:	kf6-kwindowsystem-devel >= 6.0.0
 BuildRequires:	kp6-layer-shell-qt-devel >= 6.0.0
-BuildRequires:	liblxqt-devel >= 2.4.0
-BuildRequires:	lxqt-globalkeys-devel >= 2.4.0
+BuildRequires:	liblxqt-devel >= 2.5.0
+BuildRequires:	lxqt-globalkeys-devel >= 2.5.0
 BuildRequires:	muparser-devel >= 2.2.5
 BuildRequires:	perl-base
 BuildRequires:	qt6-linguist >= %{qtver}
